@@ -1,6 +1,7 @@
 # CoderSchool FTW - * Little mermaid goes fishing *
 
 Created with love by: Charles and Victor
+
 Demo link: http://fishing-game-mermaid.netlify.com  
 
 This is a simple Canvas-based game that requires a solid understanding of the principles of JavaScript programming to customize. 
