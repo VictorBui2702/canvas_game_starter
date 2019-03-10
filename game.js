@@ -133,18 +133,38 @@ function setupKeyboardListeners() {
 let score = 0;
 let previousTime = 0;
 let time = 0;
-const SECONDS_PER_ROUND = 30;
 
+//Setting up timer
+let count = 30;
+let finished = false;
+// timer interval is every second (1000 = 1s)
+let timer = setInterval(countingTime, 1000);
+
+function countingTime(){
+  count--; // countown by 1 every second
+  // when counter reaches 0 clear the timer, hide monster and
+  // hero and finish the game
+    if (count <= 0)
+    {
+      // stop the timer
+       clearInterval(countingTime);
+       // set game to finished
+       finished = true;
+       count = 0;
+       // hide monster and hero
+      //  monsterReady = false;
+       heroReady = false;
+    }
+}
 
 let startTime = Date.now();
 let roundStartTime = Date.now();
-let roundTime = 0;
+// let roundTime = 0;
 
 // Update time spent on playing.
 function updateTime() {
   let currentTime = Date.now();
   time = Math.floor((currentTime - startTime) / 1000);
-  roundTime = Math.floor( (currentTime - roundStartTime) / 1000);
 }
 
 // Movement direction of heroX
@@ -222,17 +242,6 @@ let update = function () {
       heroY += (100 * obstacle2DirectionY); 
     }
 
-    // The below code lines are not working as expected, I am still looking for solutions that the obstacles will actually block the movement of the hero.  
-    // if (
-    //   heroX + 40 == obstacle1X &&
-    //   heroY >= obstacle1Y &&
-    //   heroY <= obstacle1Y + 40
-    // ) {
-    //   heroX = obstacle1X - 40;
-    //   // heroY += 5
-    // }
-
-    
     if (score >= 3 && score <10) {
       monsterImage.src = "images/fish-2.png";
     }
@@ -277,7 +286,14 @@ let update = function () {
       ctx.font = "20px Arial";
       ctx.fillText(`Your score: ${score}`, 10, 50);
       ctx.fillText(`Time spend: ${time} seconds`, 10, 80);
-      ctx.fillText(`Time left per round: ${SECONDS_PER_ROUND - roundTime} seconds`, 10, 110);
+      ctx.fillText(`Time left per round: ${count} seconds`, 10, 110);
+
+      if(finished==true){
+        ctx.fillStyle = 'black';
+        ctx.font = "40px Arial";
+        ctx.fillText("Game over!", 170, 220);
+        clearInterval(timer);
+      }
     };
 
     /**
