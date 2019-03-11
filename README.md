@@ -16,9 +16,9 @@ Here's a walkthrough of implemented user stories.
 
 ## Code Reviews
 
-This code was reviewed by @username and @otherusername. 
+This code was reviewed by @lvltcode and @otherusername. 
 
-* [Link to PR #X](#) - reviewed by @username.
+* [Link to PR #X](#) - reviewed by @lvltcode.
 * [Link to PR #Y](#) - reviewed by @otherusername.   
 
 
